@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Добро пожаловать!{% endblock %}
+
+
+{% block body %}
+    <nav class="navigation navbar navbar-expand-lg navbar-dark text-white fixed-top">
+        <a class="navbar-brand" href="{{ path('home') }}">Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home') }}">Главная<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('post_index') }}">Новости</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contacts">Контакты</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section class="first">
+        <div class="container">
+            <div class="row h-100 justify-content-center align-items-center">
+                <h1 class="blog mx-auto text-white">Blog by FanJek</h1>
+            </div>
+        </div>
+    </section>
+    <section id="main2">
+        <div class="container text-center">
+            <h2>Новости</h2>
+            <div class="row text-center">
+                <a name="news" class="new mx-auto">
+                    <div class="col"><img src="https://img.icons8.com/ios/50/000000/topic.png"></div>
+                    <div class="col">{{ app.request.get('comment')}}</div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section id="postadd">
+        <div class="container text-center">
+            <form class="post mx-auto" name="post1" method="get">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Что расскажете?)</label>
+                    <input type="text" name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </form>
+        </div>
+    </section>
+    <section id="top2">
+        {% for post in viewposts %}
+            <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                <h2>{{ post.title }}</h2>
+                <p>Опубликовано: {{ post.publicated ? post.publicated|date('d.m.Y H:i') : '' }}</p>
+                <div class="postik col rounded">
+                    <h3><br>{{ post.content }}</h3>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

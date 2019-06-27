@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Новый рейс{% endblock %}
+
+{% block body %}
+    <h1>Создать новый рейс</h1>
+
+    {{ include('flight/_form.html.twig') }}
+
+    <a href="{{ path('flight_index') }}">Вернуть к расписанию рейсов</a>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block body %}
+    <section class="second">
+        <a class="btn btn-outline-primary" style="border-color: white; color: white;" href="{{ path('home') }}">Главная</a>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center mt-5">
+                    <h2 class="white">Новости</h2>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                    <a class="btn btn-primary mx-auto mb-5" href="{{ path('post_new') }}">Новый пост</a>
+                </div>
+                {% for post in posts %}
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                        <h2>{{ post.title }}</h2>
+                        <p>Опубликовано: {{ post.publicated ? post.publicated|date('d.m.Y H:i') : '' }}</p>
+                        <div class="postik col rounded">
+                            <h3><br>{{ post.content }}</h3>
+                        </div>
+                        <div class="buttons">
+                            <a class="btn btn-primary" href="{{ path('post_show', {'id': post.id}) }}">Подробнее</a>
+                            <a class="btn btn-warning" href="{{ path('post_edit', {'id': post.id}) }}">Изменить</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

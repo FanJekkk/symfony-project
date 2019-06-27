@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Пост{% endblock %}
+
+{% block body %}
+    <div class="second">
+        <div class="container">
+            <div class="row">
+                <h1>Пост</h1>
+
+                <table class="table" style="color:white;">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ post.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Заголовок</th>
+                        <td>{{ post.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Контент</th>
+                        <td>{{ post.content }}</td>
+                    </tr>
+                    <tr>
+                        <th>Опубликовано</th>
+                        <td>{{ post.publicated ? post.publicated|date('d.m.Y H:i') : '' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <a class="btn btn-primary" href="{{ path('post_index') }}">Вернуться к новостям</a>
+
+                <a class="btn btn-warning" href="{{ path('post_edit', {'id': post.id}) }}">Изменить</a>
+
+                {{ include('post/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,148 @@
+.first {
+    background: url(/img/fon4.jpg) no-repeat;
+    -moz-background-size: cover; /* Firefox 3.6+ */
+    -webkit-background-size: cover; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: cover; /* Opera 9.6+ */
+    background-size: cover; /* Современные браузеры */
+    height: 110vh;
+}
+
+.buttons {
+    margin-bottom: 40px;
+}
+
+.postik {
+    background: rgb(54, 25, 25); ;
+    color: white;
+    opacity: 0.6;
+    filter: alpha(Opacity=60);
+    margin-bottom: 30px;
+}
+
+.head_line {
+    background: #466368;
+}
+
+.second {
+    background: #466368;
+    background: linear-gradient(to right bottom, #648880, #293f50);/* Для браузеров, которые не поддерживают градиенты */
+    background: -webkit-linear-gradient(#648880, #0c4c8a); /* Для Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#648880, #0c4c8a); /* Для Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#648880, #0c4c8a); /* Для Firefox 3.6 - 15 */
+    background: linear-gradient(#466368, #0c4c8a); /* Стандартный синтаксис */
+    color: white;
+    font-family: 'Play', sans-serif;
+}
+
+html {
+    background: #0c4c8a;
+    color: white;
+    font-family: 'Play', sans-serif;
+}
+
+#top2 {
+    font-family: 'Play', sans-serif;
+}
+
+#main2 {
+    font-family: 'Play', sans-serif;
+}
+
+.navigation {
+    background-color: rgba(255, 255, 255, 0);
+    font-family: 'Play', sans-serif;
+    font-size: 18px;
+    color: #fff;
+}
+
+.navbar a {
+    color: #fff;
+}
+
+.blog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Play', sans-serif;
+    border: 2px solid white;
+    text-align: center;
+    color: white;
+}
+
+.preloader {
+    --bg-color: #0c4c8a;
+    --size: 250px;
+    --first-color: #ff7473;
+    --second-color: #ffc952;
+    --third-color: #0ee018;
+    --thickness: 3px;
+    --duration: 1s;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--duration);
+    z-index: 1;
+}
+
+.preloader_content {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+}
+
+.preloader_first,
+.preloader_second,
+.preloader_third {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: var(--duration) linear infinite;
+}
+
+.preloader_first {
+    border-bottom: var(--thickness) solid var(--first-color);
+    animation-name: first;
+}
+
+.preloader_second {
+    border-right: var(--thickness) solid var(--second-color);
+    animation-name: second;
+}
+
+.preloader_third {
+    border-top: var(--thickness) solid var(--third-color);
+    animation-name: third;
+}
+
+@keyframes first {
+    0% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+}
+
+@keyframes second {
+    0% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+}
+
+@keyframes third {
+    0% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+}
