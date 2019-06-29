@@ -3,18 +3,20 @@
 {% block title %}Новый пост{% endblock %}
 
 {% block body %}
-    <div class="second text-center">
-        <div class="container">
-            <div class="row justify-content-center">
-                <h1 class="col-md-12 col-lg-12">Создать новый пост</h1>
-                <div class="col-md-6 col-lg-6">
+    <section class="comm">
+        <div class="second text-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <h1 class="col-md-12 col-lg-12">Создать новый пост</h1>
+                    <div class="col-md-6 col-lg-6">
                 {{ include('post/_form.html.twig') }}
                 </div>
-                <div class="col-md-12 col-lg-12">
-                    <a class="btn btn-warning" href="{{ path('post_index') }}">Вернуться к новостям</a>
+                    <div class="col-md-12 col-lg-12">
+                        <a class="btn btn-warning" href="{{ path('post_index') }}">Вернуться к новостям</a>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}

@@ -85,26 +85,28 @@ class __TwigTemplate_5a41c795bf48930fab3c8352322a1be4b7f7908221b353855d4cf5d2d17
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        echo "    <div class=\"second text-center\">
-        <div class=\"container\">
-            <div class=\"row justify-content-center\">
-                <h1 class=\"col-md-12 col-lg-12\">Создать новый пост</h1>
-                <div class=\"col-md-6 col-lg-6\">
+        echo "    <section class=\"comm\">
+        <div class=\"second text-center\">
+            <div class=\"container\">
+                <div class=\"row justify-content-center\">
+                    <h1 class=\"col-md-12 col-lg-12\">Создать новый пост</h1>
+                    <div class=\"col-md-6 col-lg-6\">
                 ";
-        // line 11
+        // line 12
         echo twig_include($this->env, $context, "post/_form.html.twig");
         echo "
                 </div>
-                <div class=\"col-md-12 col-lg-12\">
-                    <a class=\"btn btn-warning\" href=\"";
-        // line 14
+                    <div class=\"col-md-12 col-lg-12\">
+                        <a class=\"btn btn-warning\" href=\"";
+        // line 15
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("post_index");
         echo "\">Вернуться к новостям</a>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -126,7 +128,7 @@ class __TwigTemplate_5a41c795bf48930fab3c8352322a1be4b7f7908221b353855d4cf5d2d17
 
     public function getDebugInfo()
     {
-        return array (  101 => 14,  95 => 11,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  102 => 15,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -136,20 +138,22 @@ class __TwigTemplate_5a41c795bf48930fab3c8352322a1be4b7f7908221b353855d4cf5d2d17
 {% block title %}Новый пост{% endblock %}
 
 {% block body %}
-    <div class=\"second text-center\">
-        <div class=\"container\">
-            <div class=\"row justify-content-center\">
-                <h1 class=\"col-md-12 col-lg-12\">Создать новый пост</h1>
-                <div class=\"col-md-6 col-lg-6\">
+    <section class=\"comm\">
+        <div class=\"second text-center\">
+            <div class=\"container\">
+                <div class=\"row justify-content-center\">
+                    <h1 class=\"col-md-12 col-lg-12\">Создать новый пост</h1>
+                    <div class=\"col-md-6 col-lg-6\">
                 {{ include('post/_form.html.twig') }}
                 </div>
-                <div class=\"col-md-12 col-lg-12\">
-                    <a class=\"btn btn-warning\" href=\"{{ path('post_index') }}\">Вернуться к новостям</a>
+                    <div class=\"col-md-12 col-lg-12\">
+                        <a class=\"btn btn-warning\" href=\"{{ path('post_index') }}\">Вернуться к новостям</a>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}
 ", "post/new.html.twig", "/var/www/html/symfony-project/templates/post/new.html.twig");
     }

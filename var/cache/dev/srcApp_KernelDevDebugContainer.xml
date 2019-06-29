@@ -390,11 +390,11 @@
     <service id="EasyCorp\EasyLog\EasyLogHandler" class="EasyCorp\EasyLog\EasyLogHandler" public="false">
       <argument>/var/www/html/symfony-project/var/log/dev.log</argument>
     </service>
-    <service id="App\Controller\FlightController" class="App\Controller\FlightController" public="true" autowire="true" autoconfigure="true">
+    <service id="App\Controller\CommentController" class="App\Controller\CommentController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.CDOTD6..App\Controller\FlightController"/>
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\CommentController"/>
       </call>
     </service>
     <service id="App\Controller\HomeController" class="App\Controller\HomeController" public="true" autowire="true" autoconfigure="true">
@@ -411,23 +411,13 @@
         <argument type="service" id=".service_locator.CDOTD6..App\Controller\PostController"/>
       </call>
     </service>
-    <service id="App\Controller\SecretController" class="App\Controller\SecretController" public="true" autowire="true" autoconfigure="true">
-      <tag name="controller.service_arguments"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.CDOTD6..App\Controller\SecretController"/>
-      </call>
-    </service>
-    <service id="App\Form\ComputerType" class="App\Form\ComputerType" autowire="true" autoconfigure="true">
-      <tag name="form.type"/>
-    </service>
-    <service id="App\Form\FlightType" class="App\Form\FlightType" autowire="true" autoconfigure="true">
+    <service id="App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\PostType" class="App\Form\PostType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
-    <service id="App\Repository\FlightRepository" class="App\Repository\FlightRepository" autowire="true" autoconfigure="true">
+    <service id="App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -744,8 +734,7 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
-        <argument>App\Form\ComputerType</argument>
-        <argument>App\Form\FlightType</argument>
+        <argument>App\Form\CommentType</argument>
         <argument>App\Form\PostType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -1004,7 +993,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.hgVbXv2"/>
+      <argument type="service" id=".service_locator.UK3aCal"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -2140,6 +2129,14 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
@@ -2946,7 +2943,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.aal7nIm"/>
+      <argument type="service" id=".service_locator.mxFqpTs"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4463,7 +4460,7 @@
       <tag name="console.command" command="server:run"/>
       <argument>/var/www/html/symfony-project/public</argument>
       <argument>dev</argument>
-      <argument>/var/www/html/symfony-project/var/cache</argument>
+      <argument>/var/www/html/symfony-project</argument>
       <call method="setName">
         <argument>server:run</argument>
       </call>
@@ -4472,21 +4469,21 @@
       <tag name="console.command" command="server:start"/>
       <argument>/var/www/html/symfony-project/public</argument>
       <argument>dev</argument>
-      <argument>/var/www/html/symfony-project/var/cache</argument>
+      <argument>/var/www/html/symfony-project</argument>
       <call method="setName">
         <argument>server:start</argument>
       </call>
     </service>
     <service id="web_server.command.server_stop" class="Symfony\Bundle\WebServerBundle\Command\ServerStopCommand" public="false">
       <tag name="console.command" command="server:stop"/>
-      <argument>/var/www/html/symfony-project/var/cache</argument>
+      <argument>/var/www/html/symfony-project</argument>
       <call method="setName">
         <argument>server:stop</argument>
       </call>
     </service>
     <service id="web_server.command.server_status" class="Symfony\Bundle\WebServerBundle\Command\ServerStatusCommand" public="false">
       <tag name="console.command" command="server:status"/>
-      <argument>/var/www/html/symfony-project/var/cache</argument>
+      <argument>/var/www/html/symfony-project</argument>
       <call method="setName">
         <argument>server:status</argument>
       </call>
@@ -4511,26 +4508,21 @@
         <argument type="collection"/>
       </call>
     </service>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\FlightController" class="App\Controller\FlightController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\FlightController" class="App\Controller\FlightController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\FlightController" class="App\Controller\FlightController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PostController" class="App\Controller\PostController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PostController" class="App\Controller\PostController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PostController" class="App\Controller\PostController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecretController" class="App\Controller\SecretController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecretController" class="App\Controller\SecretController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\SecretController" class="App\Controller\SecretController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ComputerType" class="App\Form\ComputerType" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Form\ComputerType" class="App\Form\ComputerType" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\FlightType" class="App\Form\FlightType" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Form\FlightType" class="App\Form\FlightType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CommentType" class="App\Form\CommentType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PostType" class="App\Form\PostType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\PostType" class="App\Form\PostType" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\FlightRepository" class="App\Repository\FlightRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\FlightRepository" class="App\Repository\FlightRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PostRepository" class="App\Repository\PostRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\PostRepository" class="App\Repository\PostRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="maker.auto_command.make_auth" class="Symfony\Bundle\MakerBundle\Command\MakerCommand" public="false">
@@ -4695,16 +4687,22 @@
         <argument>make:migration</argument>
       </call>
     </service>
-    <service id=".service_locator.RfM5EXj" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Ye_qt7H" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="flightRepository" type="service" id="App\Repository\FlightRepository"/>
+        <argument key="commentRepository" type="service" id="App\Repository\CommentRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.yoLLRfE" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.TwhmRPL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="flight" type="service" id=".errored..service_locator.yoLLRfE.App\Entity\Flight"/>
+        <argument key="post" type="service" id=".errored..service_locator.TwhmRPL.App\Entity\Post"/>
+      </argument>
+    </service>
+    <service id=".service_locator.Gn3oxQ2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="comment" type="service" id=".errored..service_locator.Gn3oxQ2.App\Entity\Comment"/>
       </argument>
     </service>
     <service id=".service_locator.K7rw.SZ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4719,28 +4717,24 @@
         <argument key="postRepository" type="service" id="App\Repository\PostRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.TwhmRPL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.66uDlz9" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="post" type="service" id=".errored..service_locator.TwhmRPL.App\Entity\Post"/>
-      </argument>
-    </service>
-    <service id=".service_locator.FcNTimE" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="App\Controller\FlightController::delete" type="service" id=".service_locator.yoLLRfE"/>
-        <argument key="App\Controller\FlightController::edit" type="service" id=".service_locator.yoLLRfE"/>
-        <argument key="App\Controller\FlightController::index" type="service" id=".service_locator.RfM5EXj"/>
-        <argument key="App\Controller\FlightController::show" type="service" id=".service_locator.yoLLRfE"/>
+        <argument key="App\Controller\CommentController::delete" type="service" id=".service_locator.Gn3oxQ2"/>
+        <argument key="App\Controller\CommentController::edit" type="service" id=".service_locator.Gn3oxQ2"/>
+        <argument key="App\Controller\CommentController::index" type="service" id=".service_locator.Ye_qt7H"/>
+        <argument key="App\Controller\CommentController::newComment" type="service" id=".service_locator.TwhmRPL"/>
+        <argument key="App\Controller\CommentController::show" type="service" id=".service_locator.Gn3oxQ2"/>
         <argument key="App\Controller\HomeController::show" type="service" id=".service_locator.K7rw.SZ"/>
         <argument key="App\Controller\PostController::delete" type="service" id=".service_locator.TwhmRPL"/>
         <argument key="App\Controller\PostController::edit" type="service" id=".service_locator.TwhmRPL"/>
         <argument key="App\Controller\PostController::index" type="service" id=".service_locator.bY1MqeR"/>
         <argument key="App\Controller\PostController::show" type="service" id=".service_locator.TwhmRPL"/>
-        <argument key="App\Controller\FlightController:delete" type="service" id=".service_locator.yoLLRfE"/>
-        <argument key="App\Controller\FlightController:edit" type="service" id=".service_locator.yoLLRfE"/>
-        <argument key="App\Controller\FlightController:index" type="service" id=".service_locator.RfM5EXj"/>
-        <argument key="App\Controller\FlightController:show" type="service" id=".service_locator.yoLLRfE"/>
+        <argument key="App\Controller\CommentController:delete" type="service" id=".service_locator.Gn3oxQ2"/>
+        <argument key="App\Controller\CommentController:edit" type="service" id=".service_locator.Gn3oxQ2"/>
+        <argument key="App\Controller\CommentController:index" type="service" id=".service_locator.Ye_qt7H"/>
+        <argument key="App\Controller\CommentController:newComment" type="service" id=".service_locator.TwhmRPL"/>
+        <argument key="App\Controller\CommentController:show" type="service" id=".service_locator.Gn3oxQ2"/>
         <argument key="App\Controller\HomeController:show" type="service" id=".service_locator.K7rw.SZ"/>
         <argument key="App\Controller\PostController:delete" type="service" id=".service_locator.TwhmRPL"/>
         <argument key="App\Controller\PostController:edit" type="service" id=".service_locator.TwhmRPL"/>
@@ -4807,11 +4801,10 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.hgVbXv2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.UK3aCal" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Form\ComputerType" type="service" id="App\Form\ComputerType"/>
-        <argument key="App\Form\FlightType" type="service" id="App\Form\FlightType"/>
+        <argument key="App\Form\CommentType" type="service" id="App\Form\CommentType"/>
         <argument key="App\Form\PostType" type="service" id="App\Form\PostType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
@@ -4824,10 +4817,10 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.aal7nIm" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.mxFqpTs" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Repository\FlightRepository" type="service" id="App\Repository\FlightRepository"/>
+        <argument key="App\Repository\CommentRepository" type="service" id="App\Repository\CommentRepository"/>
         <argument key="App\Repository\PostRepository" type="service" id="App\Repository\PostRepository"/>
       </argument>
     </service>
@@ -5049,9 +5042,9 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
-    <service id=".service_locator.CDOTD6..App\Controller\FlightController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator_context" id="App\Controller\FlightController"/>
-      <argument>App\Controller\FlightController</argument>
+    <service id=".service_locator.CDOTD6..App\Controller\CommentController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\CommentController"/>
+      <argument>App\Controller\CommentController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CDOTD6." method="withContext"/>
     </service>
@@ -5064,12 +5057,6 @@
     <service id=".service_locator.CDOTD6..App\Controller\PostController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\PostController"/>
       <argument>App\Controller\PostController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.CDOTD6." method="withContext"/>
-    </service>
-    <service id=".service_locator.CDOTD6..App\Controller\SecretController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator_context" id="App\Controller\SecretController"/>
-      <argument>App\Controller\SecretController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CDOTD6." method="withContext"/>
     </service>
@@ -5166,15 +5153,15 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.FcNTimE"/>
+      <argument type="service" id=".service_locator.66uDlz9"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.FcNTimE"/>
+      <argument type="service" id=".service_locator.66uDlz9"/>
     </service>
-    <service id=".errored..service_locator.yoLLRfE.App\Entity\Flight" class="App\Entity\Flight"/>
     <service id=".errored..service_locator.TwhmRPL.App\Entity\Post" class="App\Entity\Post"/>
+    <service id=".errored..service_locator.Gn3oxQ2.App\Entity\Comment" class="App\Entity\Comment"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <argument type="service" id=".service_locator.JgKnBZT"/>
       <argument type="collection">
@@ -5527,7 +5514,7 @@
     <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.FcNTimE"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.66uDlz9"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

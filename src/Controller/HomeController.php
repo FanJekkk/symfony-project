@@ -17,7 +17,7 @@ class HomeController extends AbstractController
 
     public function index(Request $request)
     {
-        $q = $request->query->get('comment');
+        $q = $request->query->get('comments');
         $post = $this->getDoctrine()
             ->getRepository('App:Post')
             ->findAll();

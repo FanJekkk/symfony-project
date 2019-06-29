@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Изменить комментарий{% endblock %}
+
+{% block body %}
+    <section class="comm">
+        <h1>Изменить комментарий</h1>
+
+        {{ include('comment/_form.html.twig', {'button_label': 'Обновить'}) }}
+
+        <a class="btn btn-primary" href="{{ path('comment_index') }}">Назад к списку</a>
+
+        {{ include('comment/_delete_form.html.twig') }}
+    </section>
+{% endblock %}

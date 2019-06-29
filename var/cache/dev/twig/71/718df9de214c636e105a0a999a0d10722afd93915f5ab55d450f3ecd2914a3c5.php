@@ -85,7 +85,7 @@ class __TwigTemplate_787894702cb0dd2e900efbe6d1807949e6431bd913ef93354b115396daf
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 7
-        echo "    <nav class=\"navigation navbar navbar-expand-lg navbar-dark text-white fixed-top\">
+        echo "    <nav class=\"navigation navbar navbar-expand-lg bg-dark navbar-dark text-white fixed-top\">
         <a class=\"navbar-brand\" href=\"";
         // line 8
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
@@ -110,6 +110,12 @@ class __TwigTemplate_787894702cb0dd2e900efbe6d1807949e6431bd913ef93354b115396daf
         echo "\">Новости</a>
                 </li>
                 <li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"";
+        // line 23
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("comment_index");
+        echo "\">Комментарии</a>
+                </li>
+                <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"#contacts\">Контакты</a>
                 </li>
             </ul>
@@ -129,8 +135,8 @@ class __TwigTemplate_787894702cb0dd2e900efbe6d1807949e6431bd913ef93354b115396daf
                 <a name=\"news\" class=\"new mx-auto\">
                     <div class=\"col\"><img src=\"https://img.icons8.com/ios/50/000000/topic.png\"></div>
                     <div class=\"col\">";
-        // line 41
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 41, $this->source); })()), "request", [], "any", false, false, false, 41), "get", [0 => "comment"], "method", false, false, false, 41), "html", null, true);
+        // line 44
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 44, $this->source); })()), "request", [], "any", false, false, false, 44), "get", [0 => "comments"], "method", false, false, false, 44), "html", null, true);
         echo "</div>
                 </a>
             </div>
@@ -141,42 +147,84 @@ class __TwigTemplate_787894702cb0dd2e900efbe6d1807949e6431bd913ef93354b115396daf
             <form class=\"post mx-auto\" name=\"post1\" method=\"get\">
                 <div class=\"form-group\">
                     <label for=\"exampleFormControlTextarea1\">Что расскажете?)</label>
-                    <input type=\"text\" name=\"comment\" class=\"form-control\" id=\"exampleFormControlTextarea1\" rows=\"3\"/>
+                    <input type=\"text\" name=\"comments\" class=\"form-control\" id=\"exampleFormControlTextarea1\" rows=\"3\"/>
                 </div>
-                <button type=\"submit\" class=\"btn btn-primary\">Добавить</button>
+                <button type=\"submit\" class=\"mb-5 btn btn-primary\">Добавить</button>
             </form>
         </div>
     </section>
     <section id=\"top2\">
         ";
-        // line 58
+        // line 61
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["viewposts"]) || array_key_exists("viewposts", $context) ? $context["viewposts"] : (function () { throw new RuntimeError('Variable "viewposts" does not exist.', 58, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["viewposts"]) || array_key_exists("viewposts", $context) ? $context["viewposts"] : (function () { throw new RuntimeError('Variable "viewposts" does not exist.', 61, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
-            // line 59
-            echo "            <div class=\"col-sm-12 col-md-12 col-lg-12 text-center\">
+            // line 62
+            echo "            <div class=\"mb-5 col-sm-12 col-md-12 col-lg-12 text-center\">
                 <h2>";
-            // line 60
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 60), "html", null, true);
+            // line 63
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 63), "html", null, true);
             echo "</h2>
                 <p>Опубликовано: ";
-            // line 61
-            ((twig_get_attribute($this->env, $this->source, $context["post"], "publicated", [], "any", false, false, false, 61)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "publicated", [], "any", false, false, false, 61), "d.m.Y H:i"), "html", null, true))) : (print ("")));
+            // line 64
+            ((twig_get_attribute($this->env, $this->source, $context["post"], "publicated", [], "any", false, false, false, 64)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "publicated", [], "any", false, false, false, 64), "jS F \\a\\t g:ia"), "html", null, true))) : (print ("")));
             echo "</p>
-                <div class=\"postik col rounded\">
+                <div class=\"postik pb-4 col rounded\">
                     <h3><br>";
-            // line 63
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "content", [], "any", false, false, false, 63), "html", null, true);
+            // line 66
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "content", [], "any", false, false, false, 66), "html", null, true);
             echo "</h3>
+                    <a class=\"btn btn-primary text-center justify-content-center align-items-center\"
+                       href=\"";
+            // line 68
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("comment_new_post", ["id" => twig_get_attribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 68)]), "html", null, true);
+            echo "\">Добавить комментарий</a>
                 </div>
+                <div class=\"postik bg-dark text-white\">
+                    ";
+            // line 71
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["post"], "comments", [], "any", false, false, false, 71));
+            foreach ($context['_seq'] as $context["_key"] => $context["comment"]) {
+                // line 72
+                echo "                        <div class=\"bg-dark border border-danger\">
+                            <h3>";
+                // line 73
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "author", [], "any", false, false, false, 73), "html", null, true);
+                echo "</h3>
+                            <p style=\"font-size: 14px;\">";
+                // line 74
+                ((twig_get_attribute($this->env, $this->source, $context["comment"], "createdat", [], "any", false, false, false, 74)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "createdat", [], "any", false, false, false, 74), "jS F \\a\\t g:ia"), "html", null, true))) : (print ("")));
+                echo "</p>
+                            <div style=\"font-size: 18px;\">";
+                // line 75
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "content", [], "any", false, false, false, 75), "html", null, true);
+                echo "</div>
+                        </div>
+                    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['comment'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 78
+            echo "                </div>
             </div>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['post'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 67
+        // line 81
         echo "    </section>
+    <section id=\"contacts\">
+        <h2 style=\"text-align: center;\">Контакты</h2>
+        <div class=\"container text-center\">
+            <div class=\"row text-center\">
+                <div class=\"p-4 mx-auto\">г. Владивосток, ул.Светланская, 104</div>
+                <div class=\"p-4 mx-auto\">8 800 555 35 35</div>
+            </div>
+        </div>
+    </section>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -198,7 +246,7 @@ class __TwigTemplate_787894702cb0dd2e900efbe6d1807949e6431bd913ef93354b115396daf
 
     public function getDebugInfo()
     {
-        return array (  179 => 67,  169 => 63,  164 => 61,  160 => 60,  157 => 59,  153 => 58,  133 => 41,  109 => 20,  103 => 17,  91 => 8,  88 => 7,  78 => 6,  59 => 3,  36 => 1,);
+        return array (  218 => 81,  210 => 78,  201 => 75,  197 => 74,  193 => 73,  190 => 72,  186 => 71,  180 => 68,  175 => 66,  170 => 64,  166 => 63,  163 => 62,  159 => 61,  139 => 44,  115 => 23,  109 => 20,  103 => 17,  91 => 8,  88 => 7,  78 => 6,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -209,7 +257,7 @@ class __TwigTemplate_787894702cb0dd2e900efbe6d1807949e6431bd913ef93354b115396daf
 
 
 {% block body %}
-    <nav class=\"navigation navbar navbar-expand-lg navbar-dark text-white fixed-top\">
+    <nav class=\"navigation navbar navbar-expand-lg bg-dark navbar-dark text-white fixed-top\">
         <a class=\"navbar-brand\" href=\"{{ path('home') }}\">Blog</a>
         <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarTogglerDemo02\"
                 aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
@@ -223,6 +271,9 @@ class __TwigTemplate_787894702cb0dd2e900efbe6d1807949e6431bd913ef93354b115396daf
                 </li>
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"{{ path('post_index') }}\">Новости</a>
+                </li>
+                <li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"{{ path('comment_index') }}\">Комментарии</a>
                 </li>
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"#contacts\">Контакты</a>
@@ -243,7 +294,7 @@ class __TwigTemplate_787894702cb0dd2e900efbe6d1807949e6431bd913ef93354b115396daf
             <div class=\"row text-center\">
                 <a name=\"news\" class=\"new mx-auto\">
                     <div class=\"col\"><img src=\"https://img.icons8.com/ios/50/000000/topic.png\"></div>
-                    <div class=\"col\">{{ app.request.get('comment')}}</div>
+                    <div class=\"col\">{{ app.request.get('comments') }}</div>
                 </a>
             </div>
         </div>
@@ -253,22 +304,42 @@ class __TwigTemplate_787894702cb0dd2e900efbe6d1807949e6431bd913ef93354b115396daf
             <form class=\"post mx-auto\" name=\"post1\" method=\"get\">
                 <div class=\"form-group\">
                     <label for=\"exampleFormControlTextarea1\">Что расскажете?)</label>
-                    <input type=\"text\" name=\"comment\" class=\"form-control\" id=\"exampleFormControlTextarea1\" rows=\"3\"/>
+                    <input type=\"text\" name=\"comments\" class=\"form-control\" id=\"exampleFormControlTextarea1\" rows=\"3\"/>
                 </div>
-                <button type=\"submit\" class=\"btn btn-primary\">Добавить</button>
+                <button type=\"submit\" class=\"mb-5 btn btn-primary\">Добавить</button>
             </form>
         </div>
     </section>
     <section id=\"top2\">
         {% for post in viewposts %}
-            <div class=\"col-sm-12 col-md-12 col-lg-12 text-center\">
+            <div class=\"mb-5 col-sm-12 col-md-12 col-lg-12 text-center\">
                 <h2>{{ post.title }}</h2>
-                <p>Опубликовано: {{ post.publicated ? post.publicated|date('d.m.Y H:i') : '' }}</p>
-                <div class=\"postik col rounded\">
+                <p>Опубликовано: {{ post.publicated ? post.publicated|date('jS F \\\\a\\\\t g:ia') : '' }}</p>
+                <div class=\"postik pb-4 col rounded\">
                     <h3><br>{{ post.content }}</h3>
+                    <a class=\"btn btn-primary text-center justify-content-center align-items-center\"
+                       href=\"{{ path('comment_new_post', {'id': post.id}) }}\">Добавить комментарий</a>
+                </div>
+                <div class=\"postik bg-dark text-white\">
+                    {% for comment in post.comments %}
+                        <div class=\"bg-dark border border-danger\">
+                            <h3>{{ comment.author }}</h3>
+                            <p style=\"font-size: 14px;\">{{ comment.createdat ? comment.createdat|date('jS F \\\\a\\\\t g:ia') : '' }}</p>
+                            <div style=\"font-size: 18px;\">{{ comment.content }}</div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         {% endfor %}
+    </section>
+    <section id=\"contacts\">
+        <h2 style=\"text-align: center;\">Контакты</h2>
+        <div class=\"container text-center\">
+            <div class=\"row text-center\">
+                <div class=\"p-4 mx-auto\">г. Владивосток, ул.Светланская, 104</div>
+                <div class=\"p-4 mx-auto\">8 800 555 35 35</div>
+            </div>
+        </div>
     </section>
 {% endblock %}
 ", "home/index.html.twig", "/var/www/html/symfony-project/templates/home/index.html.twig");

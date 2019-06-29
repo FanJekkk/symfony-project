@@ -115,9 +115,9 @@ class __TwigTemplate_6003be54a3b684e0f635f7687b8c77574854f319c08f588425417ecd611
             echo "</h2>
                         <p>Опубликовано: ";
             // line 19
-            ((twig_get_attribute($this->env, $this->source, $context["post"], "publicated", [], "any", false, false, false, 19)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "publicated", [], "any", false, false, false, 19), "d.m.Y H:i"), "html", null, true))) : (print ("")));
+            ((twig_get_attribute($this->env, $this->source, $context["post"], "publicated", [], "any", false, false, false, 19)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "publicated", [], "any", false, false, false, 19), "jS F \\a\\t g:ia"), "html", null, true))) : (print ("")));
             echo "</p>
-                        <div class=\"postik col rounded\">
+                        <div class=\"postik pb-4 col rounded\">
                             <h3><br>";
             // line 21
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "content", [], "any", false, false, false, 21), "html", null, true);
@@ -195,8 +195,8 @@ class __TwigTemplate_6003be54a3b684e0f635f7687b8c77574854f319c08f588425417ecd611
                 {% for post in posts %}
                     <div class=\"col-sm-12 col-md-12 col-lg-12 text-center\">
                         <h2>{{ post.title }}</h2>
-                        <p>Опубликовано: {{ post.publicated ? post.publicated|date('d.m.Y H:i') : '' }}</p>
-                        <div class=\"postik col rounded\">
+                        <p>Опубликовано: {{ post.publicated ? post.publicated|date('jS F \\\\a\\\\t g:ia') : '' }}</p>
+                        <div class=\"postik pb-4 col rounded\">
                             <h3><br>{{ post.content }}</h3>
                         </div>
                         <div class=\"buttons\">

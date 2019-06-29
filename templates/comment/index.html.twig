@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Комментарии{% endblock %}
+
+{% block body %}
+    <section class="comm">
+        <a class="btn btn-outline-primary" style="border-color: white; color: white;" href="{{ path('home') }}">Главная</a>
+        <h1 style="background: #466368; color:white;">Список комментариев</h1>
+        <div class="table-responsive">
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Автор</th>
+                    <th>Дата</th>
+                    <th>Комментарий</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <td>{{ comment.id }}</td>
+                        <td>{{ comment.author }}</td>
+                        <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ comment.content }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('comment_show', {'id': comment.id}) }}">Подробнее</a>
+                            <a class="btn btn-warning" href="{{ path('comment_edit', {'id': comment.id}) }}">Изменить</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-primary" href="{{ path('comment_new') }}">Добавить новый</a>
+    </section>
+{% endblock %}

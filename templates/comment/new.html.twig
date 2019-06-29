@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Написать комментарий{% endblock %}
+
+{% block body %}
+    <section class="comm">
+        <div class="container">
+                <h1>Написать комментарий</h1>
+
+                {{ include('comment/_form.html.twig') }}
+
+                <a class="btn btn-primary" href="{{ path('comment_index') }}">Назад к списку</a>
+        </div>
+    </section>
+{% endblock %}

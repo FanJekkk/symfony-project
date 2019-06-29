@@ -117,7 +117,7 @@ class __TwigTemplate_33f6329defe34f37983f579b72502e9524e681ce59f643a8cc513562815
                         <th>Опубликовано</th>
                         <td>";
         // line 27
-        ((twig_get_attribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 27, $this->source); })()), "publicated", [], "any", false, false, false, 27)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 27, $this->source); })()), "publicated", [], "any", false, false, false, 27), "d.m.Y H:i"), "html", null, true))) : (print ("")));
+        ((twig_get_attribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 27, $this->source); })()), "publicated", [], "any", false, false, false, 27)) ? (print (twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 27, $this->source); })()), "publicated", [], "any", false, false, false, 27), "jS F \\a\\t g:ia"), "html", null, true))) : (print ("")));
         echo "</td>
                     </tr>
                     </tbody>
@@ -192,7 +192,7 @@ class __TwigTemplate_33f6329defe34f37983f579b72502e9524e681ce59f643a8cc513562815
                     </tr>
                     <tr>
                         <th>Опубликовано</th>
-                        <td>{{ post.publicated ? post.publicated|date('d.m.Y H:i') : '' }}</td>
+                        <td>{{ post.publicated ? post.publicated|date('jS F \\\\a\\\\t g:ia') : '' }}</td>
                     </tr>
                     </tbody>
                 </table>
